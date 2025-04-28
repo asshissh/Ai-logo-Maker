@@ -5,8 +5,8 @@ import Lookup from '@/app/_data/Lookup'
 import { useSearchParams } from 'next/navigation'
 
 function LogoTitle({onHandleInputChange}) {
-    const searchParam = useSearchParams();
-    const[title,setTitle]=useState( searchParam?.get('title')??' ')
+    const searchParams = useSearchParams();
+    const[title,setTitle]=useState( searchParams?.get('title')??' ')
 
   return (
     <div className='my-10'>
