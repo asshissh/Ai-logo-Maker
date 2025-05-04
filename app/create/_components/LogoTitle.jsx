@@ -1,11 +1,11 @@
 "use client"
-import React ,{useState} from 'react'
+import React ,{useState ,Suspense} from 'react'
 import HeadingDescription from './HeadingDescription'
 import Lookup from '@/app/_data/Lookup'
 import { useSearchParams } from 'next/navigation'
 
 function LogoTitle({onHandleInputChange}) {
-    const searchParams = useSearchParams();
+    const searchParams= useSearchParams();
     const[title,setTitle]=useState( searchParams?.get('title')??' ')
 
   return (
@@ -23,6 +23,12 @@ function LogoTitle({onHandleInputChange}) {
      onChange={(e)=>onHandleInputChange(e.target.value)}
      />
     </div>
-  )
+  );
 }
-export default LogoTitle
+export default function LogoTitleSuspended({ onHandleInputChange }) {
+  return (
+      <Suspense fallback={<div className='my-10'>Loading search params...</div>}>
+          <LogoTitle onHandleInputChange={onHandleInputChange} />
+      </Suspense>
+  );
+}
